@@ -8,6 +8,7 @@ module.exports = function(app, models, mongoose){
   
   app.get('/kickjson', function(req, res){
 	var findPlaces = function(places, $, pagenum){
+	    return res.json( $('div') );
 	    var first = true;
 		$('.location').each(function(located){
 		    if(first){
@@ -47,8 +48,7 @@ module.exports = function(app, models, mongoose){
 	  [ 'http://code.jquery.com/jquery-1.9.1.min.js' ],
 	  function(err, window){
 		if(err){ return res.json(err); }
-		var places = [ ];
-		findPlaces(places, window.$, 2);
+		findPlaces([ ], window.$, 2);
 	  }
 	);
   });
