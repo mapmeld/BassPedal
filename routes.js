@@ -23,15 +23,14 @@ module.exports = function(app, models, mongoose){
 			}
 		});
 		if($('.NS_backers__backing_row').length >= 50 && !req.query["page"]){
-			scraper({
-				uri: 'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + (pagenum+1),
-				headers: {
-					'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'
+			jsdom.env({
+				'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + (pagenum+1),
+				[ 'http://code.jquery.com/jquery.js' ],
+				function(err, window){
+				  if(err){ throw err; }
+				  findPlaces(places, window.$, pagenum+1);
 				}
-			}, function(err, $){
-				if(err){ throw err; }
-				findPlaces(places, $, pagenum+1);
-			});
+		    });
 		}
 		else{
 			res.json({ cities: places, count: $('.NS_backers__backing_row').length });
@@ -39,14 +38,13 @@ module.exports = function(app, models, mongoose){
 	};
 	
 	jsdom.env({
-		uri: 'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + ( req.query["page"] || "1" ),
-		headers: {
-			'User-Agent': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)'
-		}
-	}, function(err, window){
-		if(err){ throw err; }
+	  'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + ( req.query["page"] || "1" ),
+	  [ 'http://code.jquery.com/jquery.js' ],
+	  function(err, window){
+		if(err){ return res.json(err); }
 		var places = [ ];
 		findPlaces(places, window.$, 2);
+	  }
 	});
   });
   
