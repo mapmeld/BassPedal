@@ -1,0 +1,30 @@
+script(type="text/javascript", src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js")
+link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.css")
+// [if lte IE 8]
+  link(rel="stylesheet", href="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.ie.css")
+
+script(type="text/javascript", src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js")
+script(type="text/javascript", src="/javascripts/kickmap.js")
+
+div.container
+  .row
+    .span4
+      h3 BassPedal
+      div.well
+      p BassPedal maps backers of Kickstarter projects and looks for clusters from the same city.
+      p Depending on the type of project, this local cluster could:
+      ul
+        li Find more backers and share common interests
+        li Sell a product locally, at a store, market, or fair
+        li Hold a local movie screening or art showing
+        li Adapt a community project from across the country for their own city
+        li Have a Google Hangout with the product developer</li>
+	  a(href="https://github.com/mapmeld/BassPedal") GitHub
+	.span8
+	  br
+	  label Paste in a Kickstarter link:
+	  input#starter.x-large(type="text", placeholder="http://kickstarter.com/projects/sample/sample-project")
+	  a.btn(href="#", onclick="kicks()" style="vertical-align:top;") Import
+	  hr
+	  h3 Cities
+	  div#map(style="width:100%;height:400px;")

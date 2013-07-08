@@ -4,22 +4,7 @@ module.exports = function(app, models, mongoose){
    *  Index
    */
   app.get('/', function(req, res){
-    if (app.requireAuth === true && req.loggedIn === false)
-      res.redirect('/auth/twitter');
-
-    //get all the examples
-    models.examples.find({}, function(err, docs){
-      
-      //render the index page
-      res.render('index.jade', {
-          locals: {
-            title: 'Node.js Express MVR Template',
-            page: 'index',
-            examples: docs
-          }
-      });
-
-    });
+    res.render('kickpedal.jade');
   });
   
   
@@ -27,8 +12,6 @@ module.exports = function(app, models, mongoose){
    *  Listing
    */
   app.get('/list', function(req, res){
-    if (app.requireAuth === true && req.loggedIn === false)
-      res.redirect('/auth/twitter');
 
     //get all the examples
     models.examples.find({}, function(err, docs){
@@ -50,10 +33,6 @@ module.exports = function(app, models, mongoose){
    *  View
    */
   app.get('/view/:id', function(req, res){
-		
-
-    if (app.requireAuth === true && req.loggedIn === false)
-      res.redirect('/auth/twitter');
 
     //get the example
     models.examples.findById(req.params.id, function(err, doc){
@@ -74,10 +53,6 @@ module.exports = function(app, models, mongoose){
    *  Add View
    */
   app.get('/add', function(req, res){
-
-
-    if (app.requireAuth === true && req.loggedIn === false)
-      res.redirect('/auth/twitter');
       
       //render the add page
       res.render('add.jade', {
