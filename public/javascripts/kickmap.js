@@ -37,13 +37,6 @@ function loadNextPage(){
 				places.push({ name: d.cities[city].name, count: d.cities[city].count });
 			}
 		}
-		//document.getElementById("cities").innerHTML = "";
-		//places.sort(function(a,b){ return b.count - a.count });
-		//for(var place=0;place<places.length;place++){
-			//var m = document.createElement("li");
-			//m.innerHTML = places[place].name + " - " + places[place].count;
-			//document.getElementById("cities").appendChild(m);
-		//}
 		if(d.count >= 50){
 			loadNextPage();
 		}
@@ -91,23 +84,15 @@ function loadPlace(geocoded){
 function initMap(){
 	//var cloudmadeUrl = 'http://tile.stamen.com/terrain/{z}/{x}/{y}.jpg';
 	var cloudmadeUrl = 'http://{s}.tile.stamen.com/toner/{z}/{x}/{y}.png';
-	cloudmadeAttribution = 'Map data &copy; 2012 OpenStreetMap contributors, Tiles by Stamen',
+	cloudmadeAttribution = 'Map data &copy; 2013 OpenStreetMap contributors, Tiles &copy; Stamen Design',
 	cloudmade = new L.TileLayer(cloudmadeUrl, {maxZoom: 18, attribution: cloudmadeAttribution});
 
-	// initialize the map on the "map" div
-	map = new L.Map('map');
+	// initialize the map
+	map = L.map('map');
+	map.attributionControl.setPrefix('');
 
 	// set the map view to a given center and zoom and add the CloudMade layer
 	map.setView(new L.LatLng(36.922101,-94.182927), 4).addLayer(cloudmade);
-	
-	var myIcon = L.icon({
-		iconUrl: "http://cdn.leafletjs.com/leaflet-0.4.5/images/marker-icon.png",
-		iconSize: [13, 31],
-		shadowSize: [22, 31],
-		iconAnchor: [7, 31],
-		popupAnchor: [-1, -28]
-	});
-	miniIcon = myIcon;
 	
 	if(gup("project")){
 	  $("#starter").val( unescape( gup("project") ) );
