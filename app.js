@@ -3,7 +3,7 @@ var app = module.exports = express.createServer();
 var mongoose = require('mongoose');
 
 
-var db_uri = process.env.MONGOLAB_URI || process.env.MONGODB_URI || config.default_db_uri;
+var db_uri = process.env.MONGOLAB_URI || process.env.MONGODB_URI || "mongodb://localhost/kickpedal";
 mongoose.connect(db_uri);
 
 var config = require('./config.js')(app, express);
