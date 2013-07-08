@@ -8,13 +8,8 @@ module.exports = function(app, models, mongoose){
   
   app.get('/kickjson', function(req, res){
 	var findPlaces = function(places, $, pagenum){
-	    return res.json( $('div') );
-	    var first = true;
-		$('.location').each(function(located){
-		    if(first){
-		      first = false;
-		      return;
-		    }
+	    return res.json( $('p.location').length );
+		$('p.location').each(function(located){
 			var myPlace = $(this).text().replace('\n','').replace('\n','').replace('\n','');
 			var foundPlace = false;
 			for(var p=0;p<places.length;p++){
@@ -44,7 +39,7 @@ module.exports = function(app, models, mongoose){
 	};
 	
 	jsdom.env(
-	  'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + ( req.query["page"] || "1" ),
+	  'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?cursor=' + ( req.query["page"] || "1" ),
 	  [ 'http://code.jquery.com/jquery-1.9.1.min.js' ],
 	  function(err, window){
 		if(err){ return res.json(err); }
