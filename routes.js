@@ -23,21 +23,21 @@ module.exports = function(app, models, mongoose){
 			}
 		});
 		if($('.NS_backers__backing_row').length >= 50 && !req.query["page"]){
-			jsdom.env({
+			jsdom.env(
 				'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + (pagenum+1),
 				[ 'http://code.jquery.com/jquery.js' ],
 				function(err, window){
 				  if(err){ throw err; }
 				  findPlaces(places, window.$, pagenum+1);
 				}
-		    });
+		    );
 		}
 		else{
 			res.json({ cities: places, count: $('.NS_backers__backing_row').length });
 		}
 	};
 	
-	jsdom.env({
+	jsdom.env(
 	  'http://www.kickstarter.com/projects/' + req.query["project"] + '/backers?page=' + ( req.query["page"] || "1" ),
 	  [ 'http://code.jquery.com/jquery.js' ],
 	  function(err, window){
@@ -45,7 +45,7 @@ module.exports = function(app, models, mongoose){
 		var places = [ ];
 		findPlaces(places, window.$, 2);
 	  }
-	});
+	);
   });
   
 };
