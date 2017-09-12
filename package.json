@@ -3,12 +3,12 @@
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-      "express": "2.5.8"
+      "express": "4.15.4"
     , "jade": ">= 0.0.1"
     , "mongodb": ">= 0.9.6-7"
     , "mongoose": ">= 2.5.10"
-    , "cheerio": "0.12.x"
-    , "request": "2.22.x"
+    , "cheerio": "~0.22.0"
+    , "request": "~2.81.0"
   },
   "engines": {
     "node": "0.8.x",
