@@ -1,4 +1,6 @@
 #Node.js Express MVR Template Project
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/mapmeld/BassPedal.svg)](https://greenkeeper.io/)
 by [Ben Edmunds](http://benedmunds.com)
 
 This is a very simple MVR starting point for Node.js Express.  
